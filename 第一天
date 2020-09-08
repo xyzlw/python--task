@@ -72,16 +72,24 @@ python语言是一种通用编程语言，其在科学计算和机器学习领�
   利用位运算实现快速计算
   通过 <<，>> 快速计算2的倍数问题。
 
+
+
 n << 1 -> 计算 n*2
 n >> 1 -> 计算 n/2，负奇数的运算不可用
 n << m -> 计算 n*(2^m)，即乘以 2 的 m 次方
 n >> m -> 计算 n/(2^m)，即除以 2 的 m 次方
 1 << n -> 2^n
-通过 ^ 快速交换两个整数。 通过 ^ 快速交换两个整数。
 
+按位异或操作 ^通过 ^ 快速交换两个整数。
+1 ^ 1 = 0
+1 ^ 0 = 1
+0 ^ 1 = 1
+0 ^ 0 = 0
+通过 ^ 快速交换两个整数。
 a ^= b
 b ^= a
 a ^= b
+
 通过 a & (-a) 快速获取a的最后为 1 位置的整数。
 
 00 00 01 01 -> 5
@@ -102,10 +110,26 @@ a ^= b
   if
   if-else
   if-elif-else
-  
+'''temp = input('请输入成绩:')
+source = int(temp)
+if 100 >= source >= 90:
+    print('A')
+elif 90 > source >= 80:
+    print('B')
+elif 80 > source >= 60:
+    print('C')
+elif 60 > source >= 0:
+    print('D')
+else:
+    print('输入错误！')'''
   
 #assert 关键词
-  assert这个关键词我们称之为“断言”，当这个关键词后边的条件为 False 时，程序自动崩溃并抛出AssertionError的异常
+  assert这个关键词-“断言”，当这个关键词后边的条件为 False 时，程序自动崩溃并抛出AssertionError的异常
+
+'''assert 3 > 7
+
+ AssertionError'''
+
 
 
 #while 循环
@@ -125,7 +149,7 @@ while循环的代码块会一直循环执行，直到布尔表达式的值为布
 range([start,] stop[, step=1])  左闭右开
 
 
-#列表推导
+#列表推导--在一句话里加条件判断语句并执行
    x = [-4, -2, 0, 2, 4]
    y = [a * 2 for a in x]
    print(y)
