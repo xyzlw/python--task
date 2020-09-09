@@ -159,5 +159,5 @@ range([start,] stop[, step=1])  左闭右开
  
 #异常处理
   try-except
-  
+  异常类别及详细信息免不了用时谷歌百度
 
