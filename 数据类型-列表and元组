@@ -1,0 +1,137 @@
+#列表--有序集合，没有固定大小，能够保存任意数量任意类型的 Python 对象
+x = ['1','2','3']   x = [i for i in range(1,4)] == x = list(range(1,4))
+
+x = [0] * 5
+print(x, type(x))
+# [0, 0, 0, 0, 0] <class 'list'>
+
+x = [0 for i in range(5)]
+print(x, type(x))
+# [0, 0, 0, 0, 0] <class 'list'>
+
+x = [i for i in range(1, 10, 2)]
+print(x, type(x))
+# [1, 3, 5, 7, 9] <class 'list'>
+
+x = [i for i in range(10, 1, -2)]
+print(x, type(x))
+# [10, 8, 6, 4, 2] <class 'list'>
+
+x = [i ** 2 for i in range(1, 10)]
+print(x, type(x))
+# [1, 4, 9, 16, 25, 36, 49, 64, 81] <class 'list'>
+
+x = [[0] * 3] * 4
+print(x, type(x))
+# [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0]] <class 'list'>
+
+x[0][0] = 1
+print(x, type(x))
+# [[1, 0, 0], [1, 0, 0], [1, 0, 0], [1, 0, 0]] <class 'list'>
+
+a = [0] * 3
+x = [a] * 4
+print(x, type(x))
+# [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0]] <class 'list'>
+
+x[0][0] = 1
+print(x, type(x))
+# [[1, 0, 0], [1, 0, 0], [1, 0, 0], [1, 0, 0]] <class 'list'>
+
+
+#列表元素添加删除
+list.append(obj) 在列表末尾添加新的对象，只接受一个参数，参数可以是任何数据类型
+若此元素如果是一个 list，那么这个 list 将作为一个整体进行追加，子列表作为原列表的一个元素
+
+list.extend(seq) 在列表末尾一次性追加另一个序列中的多个值（用新列表扩展原来的列表）
+
+list.insert(index, obj) 在编号 index 位置插入 obj
+x = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']
+x.insert(2, 'Sunday')
+print(x)
+# ['Monday', 'Tuesday', 'Sunday', 'Wednesday', 'Thursday', 'Friday']
+
+##删除
+  list.remove(obj) 移除列表中某个值的第一个匹配项
+  list.pop([index=-1]) 移除列表中的一个元素（默认最后一个元素），并且返回该元素的值
+  del var1[, var2 ……] 删除单个或多个对象,此为彻底删除
+  
+#获取列表元素值
+通过元素的索引值，从列表获取单个元素 x[1]
+切片的通用写法是 start : stop : step 
+''以具体的 step 从编号 start 往编号 stop 切片。注意最后把 step 设为 -1，相当于将列表反向排列
+  week = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']
+  print(week[1:4:2])  # ['Tuesday', 'Thursday']
+  print(week[:4:2])  # ['Monday', 'Wednesday']
+  print(week[1::2])  # ['Tuesday', 'Thursday']
+  print(week[::-1])  # ['Friday', 'Thursday', 'Wednesday', 'Tuesday', 'Monday']''
+
+
+#浅拷贝  x2 = x1[:] 
+
+list1 = [123, 456, 789, 213]
+list2 = list1
+list3 = list1[:]
+
+print(list2)  # [123, 456, 789, 213]
+print(list3)  # [123, 456, 789, 213]
+list1.sort()
+print(list2)  # [123, 213, 456, 789] 
+print(list3)  # [123, 456, 789, 213]
+
+list1 = [[123, 456], [789, 213]]
+list2 = list1
+list3 = list1[:]
+print(list2)  # [[123, 456], [789, 213]]
+print(list3)  # [[123, 456], [789, 213]]
+list1[0][0] = 111
+print(list2)  # [[111, 456], [789, 213]]
+print(list3)  # [[111, 456], [789, 213]]
+
+#列表的操作   ==  +  in  not in *
+
+#列表的计数  list.count(obj) 统计某个元素在列表中出现的次数
+#查询索引值  list.index(x[, start[, end]]) 从列表中找出某个值第一个匹配项的索引位置
+#方向排列    list.reverse() 反向列表中元素  list[::-1]
+#列表元素排序  list.sort(key=None, reverse=False) 对原列表进行排序
+
+
+
+元祖 （）tuple  
+Python 的元组与列表类似，不同之处在于tuple被创建后就不能对其进行修改，类似字符串；
+元组使用小括号，列表使用方括号；
+元组与列表类似，也用整数来对它进行索引 (indexing) 和切片 (slicing)；
+
+创建元组可以用小括号 ()，也可以什么都不用，为了可读性，建议还是用 ()；
+元组中只包含一个元素时，需要在元素后面添加逗号，否则括号会被当作运算符使用；
+'''print(8 * (8))  # 64
+   print(8 * (8,))  # (8, 8, 8, 8, 8, 8, 8, 8)'''
+
+元组有不可更改 (immutable) 的性质，因此不能直接给元组的元素赋值，但是只要元组中的元素可更改 (mutable)，那么我们可以直接更改其元素，注意这跟赋值其元素不同；
+t1 = (1, 2, 3, [4, 5, 6])
+print(t1)  # (1, 2, 3, [4, 5, 6])
+
+t1[3][0] = 9
+print(t1)  # (1, 2, 3, [9, 5, 6])
+
+t = (1, 10.31, 'python')
+print(t.count('python'))  # 1
+print(t.index(10.31))  # 1
+
+#元祖操作  ==  +  *  in  not in  
+
+#解压元祖
+ t = (1, 10.31, 'python')
+(a, b, c) = t
+print(a, b, c)   # 1 10.31 python
+
+通配符 *   *_
+ t = 1, 2, 3, 4, 5
+a, b, *rest, c = t
+print(a, b, c)  # 1 2 5
+print(rest)  # [3, 4]
+
+
+t = 1, 2, 3, 4, 5
+a, b, *_ = t
+print(a, b)  # 1 2
