@@ -1,0 +1,124 @@
+#字符串
+引号之间的字符集合---成对的 单引号 或 双引号
+ 转义字符	描述 \
+ \\	反斜杠符号
+ \'	单引号
+ \"	双引号
+ \n	换行
+ \t	横向制表符(TAB)
+ \r	回车
+ 字符串跨行 '''  '''
+ 
+ #字符串的切片与拼接
+   str[star:stop]  左闭右开
+ #字符串的常用内置方法
+   capitalize() 将字符串的第一个字符转换为大写
+   lower() 转换字符串中所有大写字符为小写
+   upper() 转换字符串中的小写字母为大写
+   swapcase() 将字符串中大写转换为小写，小写转换为大写
+   count(str, beg= 0,end=len(string)) 返回str在 string 里面出现的次数，如果beg或者end指定则返回指定范围内str出现的次数
+   endswith(suffix, beg=0, end=len(string)) 检查字符串是否以指定子字符串 suffix 结束，如果是，返回 True，否则返回 False。如果 beg 和 end 指定值，则在指定范围内检查
+   startswith(substr, beg=0,end=len(string)) 检查字符串是否以指定子字符串 `substr` 开头，如果是，返回 True，否则返回 False。如果 `beg` 和 `end` 指定值，则在指定范围内检查
+   find(str, beg=0, end=len(string)) 检测 str 是否包含在字符串中，如果指定范围 beg 和 end，则检查是否包含在指定范围内，如果包含，返回开始的索引值，否则返回 -1
+   rfind(str, beg=0,end=len(string)) 类似于 find() 函数，不过是从右边开始查找
+   
+   isnumeric() 如果字符串中只包含数字字符，则返回 True，否则返回 False
+   
+   ljust(width[, fillchar])返回一个原字符串左对齐，并使用fillchar（默认空格）填充至长度width的新字符串
+   rjust(width[, fillchar])返回一个原字符串右对齐，并使用fillchar（默认空格）填充至长度width的新字符串
+   str4 = '1101'
+   print(str4.ljust(8, '0'))  # 11010000
+   print(str4.rjust(8, '0'))  # 00001101
+   
+   lstrip([chars]) 截掉字符串左边的空格或指定字符
+   rstrip([chars]) 删除字符串末尾的空格或指定字符
+   strip([chars]) 在字符串上执行lstrip()和rstrip()
+   
+   partition(sub) 找到子字符串sub，把字符串分为一个三元组(pre_sub,sub,fol_sub)，如果字符串中不包含sub则返回('原字符串','','')
+   rpartition(sub)类似于partition()方法，不过是从右边开始查找
+   
+   replace(old, new [, max]) 把 将字符串中的old替换成new，如果max指定，则替换不超过max次
+   str5 = ' I Love LsgoGroup '
+   print(str5.strip().replace('I', 'We'))  # We Love LsgoGroup
+   
+   split(str="", num) 不带参数默认是以空格为分隔符切片字符串，如果num参数有设置，则仅分隔num个子字符串，返回切片后的子字符串拼接的列表
+   str5 = ' I Love LsgoGroup '
+   print(str5.strip().split())  # ['I', 'Love', 'LsgoGroup']
+   print(str5.strip().split('o'))  # ['I L', 've Lsg', 'Gr', 'up']
+   
+   format 格式化函数
+ str8 = "{0} Love {1}".format('I', 'Lsgogroup')  # 位置参数
+print(str8)  # I Love Lsgogroup
+
+str8 = "{a} Love {b}".format(a='I', b='Lsgogroup')  # 关键字参数
+print(str8)  # I Love Lsgogroup
+
+str8 = "{0} Love {b}".format('I', b='Lsgogroup')  # 位置参数要在关键字参数之前
+print(str8)  # I Love Lsgogroup
+
+str8 = '{0:.2f}{1}'.format(27.658, 'GB')  # 保留小数点后两位
+print(str8)  # 27.66GB
+
+
+
+
+#字典
+序列是以连续的整数为索引，与此不同的是，字典以"关键字"为索引，关键字可以是任意不可变类型，通常用字符串或数值。
+字典是 Python 唯一的一个 映射类型，字符串、元组、列表属于序列类型
+
+可变与不可变分别：
+麻烦方法：用 id(X) 函数，对 X 进行某种操作，比较操作前后的 id，如果不一样，则 X 不可变，如果一样，则 X 可变。
+便捷方法：用 hash(X)，只要不报错，证明 X 可被哈希，即不可变，反过来不可被哈希，即可变。
+数值、字符和元组 都能被哈希，因此它们是不可变类型。
+列表、集合、字典不能被哈希，因此它是可变类型
+  
+  
+字典 是无序的 键:值（key:value）对集合，键必须是互不相同的（在同一个字典之内）
+   字典 定义语法为 {元素1, 元素2, ..., 元素n}
+   其中每一个元素是一个「键值对」-- 键:值 (key:value)
+   关键点是「大括号 {}」,「逗号 ,」和「冒号 :」
+   大括号 -- 把所有元素绑在一起
+   逗号 -- 将每个键值对分开
+   冒号 -- 将键和值分开
+   
+   通过构造函数dict来创建字典  
+   x = dict()
+   dic['a'] = 1
+   dic['b'] = 2
+   
+   dic1 = dict([('apple', 4139), ('peach', 4127), ('cherry', 4098)])
+   print(dic1)  # {'cherry': 4098, 'apple': 4139, 'peach': 4127}
+ 
+   dic2 = dict((('apple', 4139), ('peach', 4127), ('cherry', 4098)))
+   print(dic2)  # {'peach': 4127, 'cherry': 4098, 'apple': 4139}
+   
+   
+   dic = dict(name='Tom', age=10)
+   print(dic)  # {'name': 'Tom', 'age': 10}
+   print(type(dic))  # <class 'dict'>这种情况下，键只能为字符串类型，并且创建的时候字符串不能加引号，加上就会直接报语法错误
+   
+#字典的内置方法
+dict.fromkeys(seq[, value]) 用于创建一个新字典，以序列 seq 中元素做字典的键，value 为字典所有键对应的初始值
+dict.keys()返回一个可迭代对象，可以使用 list() 来转换为列表，列表为字典中的所有键
+dict.values()返回一个迭代器，可以使用 list() 来转换为列表，列表为字典中的所有值
+
+dict.items()以列表返回可遍历的 (键, 值) 元组数组
+dict.get(key, default=None) 返回指定键的值，如果值不在字典中返回默认值
+dict.setdefault(key, default=None)和get()方法 类似, 如果键不存在于字典中，将会添加键并将值设为默认值
+key in dict in 操作符用于判断键是否存在于字典中，如果键在字典 dict 里返回true，否则返回false。而not in操作符刚好相反，如果键在字典 dict 里返回false，否则返回true
+
+dict.pop(key[,default])删除字典给定键 key 所对应的值，返回值为被删除的值。key 值必须给出。若key不存在，则返回 default 值。
+del dict[key] 删除字典给定键 key 所对应的值
+dict.popitem()随机返回并删除字典中的一对键和值，如果字典已经为空，却调用了此方法，就报出KeyError异常
+dict.clear()用于删除字典内所有元素
+dict.copy()返回一个字典的浅复制
+
+dict.update(dict2)把字典参数 dict2 的 key:value对 更新到字典 dict 里
+dic = {'Name': 'Lsgogroup', 'Age': 7}
+dic2 = {'Sex': 'female', 'Age': 8}
+dic.update(dic2)
+print(dic)  
+# {'Sex': 'female', 'Age': 8, 'Name': 'Lsgogroup'}
+
+
+   
