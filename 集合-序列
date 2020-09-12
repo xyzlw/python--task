@@ -1,0 +1,61 @@
+#集合 {}  set（）
+  Python 中set与dict类似，也是一组key的集合，但不存储value。由于key不能重复，所以，在set中，没有重复的key；
+  注意，key为不可变类型，即可哈希的值
+  先创建对象再加入元素
+  ￥在创建空集合的时候只能使用s = set()，因为s = {}创建的是空字典
+  直接把一堆元素用花括号括起来{元素1, 元素2, ..., 元素n}。
+  ￥重复元素在set中会被自动被过滤 
+  
+  使用set(value)工厂函数，把列表或元组转换成集合---过程中会删除重复元素
+ 访问集合
+  可以使用len()內建函数得到集合的大小
+  可以使用for把集合中的数据一个个读取出来
+   for item in set()
+  可以通过in或not in判断一个元素是否在集合中已经存在
+ 集合自带的方法
+   set.add(elmnt)用于给集合添加元素，如果添加的元素在集合中已存在，则不执行任何操作
+   set.update(set)用于修改当前集合，可以添加新的元素或集合到当前集合中，如果添加的元素在集合中已存在，则该元素只会出现一次，重复的会忽略
+   移除元素：set.remove(item) 用于移除集合中的指定元素。如果元素不存在，则会发生错误；set.discard(value) 用于移除指定的集合元素。remove() 方法在移除一个不存在的元素时会发生错误，而 discard() 方法不会
+   set.pop() 用于随机移除一个元素
+   交集 set.intersection(set1, set2) 返回两个集合的交集。
+        set1 & set2 返回两个集合的交集。
+        set.intersection_update(set1, set2) 交集，在原始的集合上移除不重叠的元素
+   差集  set.difference(set) 返回集合的差集。
+         set1 - set2 返回集合的差集。
+         set.difference_update(set) 集合的差集，直接在原来的集合中移除元素，没有返回值
+   异或  set.symmetric_difference(set)返回集合的异或。
+         set1 ^ set2 返回集合的异或。
+         set.symmetric_difference_update(set)移除当前集合中在另外一个指定集合相同的元素，并将另外一个指定集合中不同的元素插入到当前集合中
+       set.issubset(set)判断集合是不是被其他集合包含，如果是则返回 True，否则返回 False。
+       set1 <= set2 判断集合是不是被其他集合包含，如果是则返回 True，否则返回 False
+       
+    set.isdisjoint(set) 用于判断两个集合是不是不相交，如果是返回 True，否则返回 False
+    frozenset([iterable]) 返回一个冻结的集合，冻结后集合不能再添加或删除任何元素
+
+
+
+#序列
+  在 Python 中，序列类型包括字符串、列表、元组、集合和字典，这些序列支持一些通用的操作，但比较特殊的是，集合和字典不支持索引、切片、相加和相乘操作
+  
+  list(sub) 把一个可迭代对象转换为列表
+  tuple(sub) 把一个可迭代对象转换为元组
+  str(obj) 把obj对象转换为字符串
+  len(s) 返回对象（字符、列表、元组等）长度或元素个数
+  max(s)  min(x)
+  sum(iterable[, start=0]) 返回序列iterable与可选参数start的总和
+  sorted(iterable, key=None, reverse=False) 对所有可迭代的对象进行排序操作。
+          iterable -- 可迭代对象。
+          key -- 主要是用来进行比较的元素，只有一个参数，具体的函数的参数就是取自于可迭代对象中，指定可迭代对象中的一个元素来进行排序。
+          reverse -- 排序规则，reverse = True 降序 ， reverse = False 升序（默认）。
+          返回重新排序的列表。
+          
+   reversed(seq) 函数返回一个反转的迭代器。
+   seq -- 要转换的序列，可以是 tuple, string, list 或 range
+   
+   ### enumerate(sequence, [start=0]) 用于将一个可遍历的数据对象(如列表、元组或字符串)组合为一个索引序列，同时列出数据和数据下标，一般用在 for 循环当中
+   
+   
+   
+   ###zip(iter1 [,iter2 [...]])    用于将可迭代的对象作为参数，将对象中对应的元素打包成一个个元组，然后返回由这些元组组成的对象，这样做的好处是节约了不少的内存。
+           list(zip())
+              如果各个迭代器的元素个数不一致，则返回列表长度与最短的对象相同，利用 * 号操作符，可以将元组解压为列表
