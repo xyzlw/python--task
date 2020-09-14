@@ -119,5 +119,39 @@ class A(object):
 实例属性：实例属性和具体的某个实例对象有关系，并且一个实例对象和另外一个实例对象是不共享属性的，说白了实例属性只能在自己的对象里面使用，其他的对象不能直接使用，因为self是谁调用，它的值就属于该对象
             
 
+#绑定
+   要求方法需要有实例才能被调用，这种限制其实就是 Python 所谓的绑定
+   
+#内置函数
+  issubclass(class, classinfo) 方法用于判断参数 class 是否是类型参数 classinfo 的子类
+  classinfo可以是类对象的元组，只要class是其中任何一个候选类的子类，则返回True
+  一个类被认为是其自身的子类
+  
+  
+  isinstance(object, classinfo) 方法用于判断一个对象是否是一个已知的类型，类似type()
+  type()不会认为子类是一种父类类型，不考虑继承关系/isinstance()会认为子类是一种父类类型，考虑继承关系
+  如果第一个参数不是对象，则永远返回False
+  
+  
+  
+  
+  hasattr(object, name)用于判断对象是否包含对应的属性
+  class Coordinate:
+    x = 10
+    y = -5
+    z = 0
 
+
+point1 = Coordinate()
+print(hasattr(point1, 'x'))  # True
+print(hasattr(point1, 'y'))  # True
+print(hasattr(point1, 'z'))  # True
+print(hasattr(point1, 'no'))  # False
+
+
+getattr(object, name[, default])用于返回一个对象属性值
+
+setattr(object, name, value)对应函数 getattr()，用于设置属性值，该属性不一定是存在的
+
+delattr(object, name)用于删除属性
       
