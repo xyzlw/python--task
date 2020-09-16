@@ -1,0 +1,82 @@
+# 数据集下载
+!wget -O pokemon_data.csv https://pai-public-data.oss-cn-beijing.aliyuncs.com/pokemon/pokemon.csv
+
+#导入包
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+#读取数据
+df = pd.read_csv("./pokemon_data.csv")
+
+#查看数据类型
+print(df.shape)
+df.info()
+
+#查看数据缺失
+percent_missing = df.isnull().sum() * 100 / len(df)
+missing_value_df = pd.DataFrame({
+    'column_name': df.columns,
+    'percent_missing': percent_missing
+})
+missing_value_df.sort_values(by='percent_missing', ascending=False).head(10)
+print(missing_value_df)
+
+# 查看各代口袋妖怪的数量
+df['generation'].value_counts().plot.bar()
+# 查看每个系口袋妖怪的数量
+df['type1'].value_counts().sort_values(ascending=True).plot.barh()
+
+# 相关性热力图分析
+plt.subplots(figsize=(20,15))
+ax = plt.axes()
+ax.set_title("Correlation Heatmap")
+corr = df.corr()
+sns.heatmap(corr, 
+            xticklabels=corr.columns.values,
+            yticklabels=corr.columns.values)
+            
+##这对我们了解宝可梦的特性很有帮助。比如通过观察 attack 这一个特征和 height_m 是正相关的，我们可以得出：越高的宝可梦，
+攻击力越高。但是再看 height_m，我们会发现它和 base_happiness 是负相关的。这个时候我们可以作出另外一个结论：长得高的宝可梦可能都不太开心。##
+
+##只关注六个基础值：血量，攻击力，防御力，特攻，特防，速度
+interested = ['hp','attack','defense','sp_attack','sp_defense','speed']
+sns.pairplot(df[interested])
+
+#通过相关性分析heatmap分析五个基础属性#可以看到大部分都是成正比例的，一个值的提高往往会拉高另外一个值。这点我们通过相关性热力图也可以看到
+'''相关系数矩阵与热力图
+样本是由多维特征的构成的，把每个特征维度都看成一个随机变量，为了考查两两特征间的关系，可以借助随机变量的协方差，协方差是对两个随机变量联合分布线性相关程度的一种度量，对其进行归一化处理，得到相关系数
+
+相关性最常用的是皮尔森相关系数，皮尔森相关系数在[-1, 1]，越接近1或-1，表明正/反线性关系越强，为0则表示两个变量间没有线性关系
+np.corrcoef(a)可计算行与行之间的相关系数，
+利用热力图可以看数据表里多个特征两两的相似度'''
+
+plt.subplots(figsize=(10,8))
+ax = plt.axes()
+ax.set_title("Correlation Heatmap")
+corr = df[interested].corr()
+sns.heatmap(corr, 
+            xticklabels=corr.columns.values,
+            yticklabels=corr.columns.values,
+            annot=True, fmt="f",cmap="YlGnBu")
+            
+            
+for c in interested:
+    df[c] = df[c].astype(float)
+df = df.assign(total_stats = df[interested].sum(axis=1)) 
+
+# 用 total_stats 这个字段来存储种族值,种族值分布
+total_stats = df.total_stats
+plt.hist(total_stats,bins=35)
+plt.xlabel('total_stats')
+plt.ylabel('Frequency')
+
+# 不同属性的种族值分布
+plt.subplots(figsize=(20,12))
+ax = sns.violinplot(x="type1", y="total_stats",
+                    data=df, palette="muted")
+                    
+                    
+                    
+ 
+df[(df.total_stats >= 570) & (df.is_legendary == 0)]['name'].head(10)
